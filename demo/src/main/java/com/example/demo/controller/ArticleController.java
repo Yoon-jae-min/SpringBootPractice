@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.ArticleForm;
+import com.example.demo.dto.CommentForm;
 import com.example.demo.entity.Article;
 import com.example.demo.repository.ArticleRepository;
+import com.example.demo.service.CommentService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
 public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping("/articles/new")
     public String newArticleForm(){
         return "articles/new";
@@ -43,8 +49,10 @@ public class ArticleController {
         log.info("id = " + id);
 
         Article articleData = articleRepository.findById(id).orElse(null);
+        List<CommentForm> commentForms = commentService.comments(id);
 
         model.addAttribute("article", articleData);
+        model.addAttribute("commentForms", commentForms);
 
         return "articles/show";
     }
