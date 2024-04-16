@@ -6,3 +6,12 @@ spring:
         format_sql: true
 
     defer-datasource-initialization: true
+
+
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: scott
+    password: tiger
+    server:
+      port: 9090

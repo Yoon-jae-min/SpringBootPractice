@@ -11,7 +11,8 @@ import lombok.ToString;
 @Entity
 public class Article {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_id")
+    @SequenceGenerator(name = "article_id",sequenceName = "article_id", initialValue = 1, allocationSize = 1)
     private Long id;
     @Column
     private String title;

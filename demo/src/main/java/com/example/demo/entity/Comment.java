@@ -8,14 +8,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
+@Entity(name = "reply")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_id")
+    @SequenceGenerator(name = "comment_id",sequenceName = "comment_id", initialValue = 1, allocationSize = 1)
     private Long id;
     @ManyToOne
 

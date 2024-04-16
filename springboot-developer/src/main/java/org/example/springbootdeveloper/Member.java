@@ -12,10 +12,15 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_id")
+    @SequenceGenerator(name = "member_id")
     @Column(name = "id", updatable = false)
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    public void changeName(String name){
+        this.name = name;
+    }
 }
