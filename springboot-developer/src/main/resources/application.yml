@@ -14,6 +14,10 @@ spring:
     console:
       enabled: true
 
+jwt:
+  issuer: ajufresh@gmail.com
+  secret_key: study-springboot
+
 
 #  datasource:
 #    url: jdbc:oracle:thin:@localhost:1521:XE
