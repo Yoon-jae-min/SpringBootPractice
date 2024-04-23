@@ -36,7 +36,7 @@ public class UploadController {
 
         log.info(filename.equals("") ? "3. 첨부안함" : "3.첨부파일: " + filename);
         if(!file.isEmpty()){
-            String fullPath = fileDir + "/" + filename;
+            String fullPath = fileDir + filename;
             if(new File(fullPath).exists()){
                 fullPath = fileDir + UUID.randomUUID().toString() + filename;
             }
@@ -58,7 +58,7 @@ public class UploadController {
                            @RequestParam MultipartFile file1,
                            @RequestParam MultipartFile file2) throws IOException {
         if (!file1.isEmpty()) {
-            String fullPath1 = fileDir + "/" + file1.getOriginalFilename();
+            String fullPath1 = fileDir + file1.getOriginalFilename();
             log.info("1. 첨부한 파일에 따라 저장할 예정 = {}", fullPath1);
             if (new File(fullPath1).exists()) {
                 fullPath1 = fileDir + UUID.randomUUID().toString() + file1.getOriginalFilename();
@@ -70,7 +70,7 @@ public class UploadController {
             log.info("1. 파일 첨부 안 함");
         }
         if (!file2.isEmpty()) {
-            String fullPath2 = fileDir + "/" + file2.getOriginalFilename();
+            String fullPath2 = fileDir + file2.getOriginalFilename();
             log.info("2. 첨부한 파일에 따라 저장할 예정 = {}", fullPath2);
             if (new File(fullPath2).exists()) {
                 fullPath2 = fileDir + UUID.randomUUID().toString() + file2.getOriginalFilename();
